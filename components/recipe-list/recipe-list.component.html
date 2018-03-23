@@ -1,0 +1,22 @@
+<div style="float: right;">
+    <input type="button" value="Toggle Dark BG" (click)="toggleBackground()"/>
+    <input type="button" value="toggle Font size" (click)="toggleFontSize()"/>
+</div>
+
+<div style="float: right;">
+    <input type="button" value="Add New Recipe" (click)="addNewRecipe()"/>
+</div>
+
+<h1 [class.darkbg]="use_dark_background" [ngStyle]="current_styles"> These are our Recipes</h1>
+
+<p *ngIf="!recipes_loaded" style="color:brown">
+    Loading recipe please wait..
+</p>
+<p *ngIf="recipes_loaded && (!recipes || !recipes.length)" style="color:brown">
+    There are no recipes. Why not add one now    
+</p>
+<app-recipe-summary *ngFor="let recipe of recipes" [recipe]="recipe" (userClick)="userClickedOnRecipe($event)"
+(zoomIn)="ZoomInOnRecipe(recipe)"
+></app-recipe-summary>
+
+<div style="clear:both"></div>

@@ -1,0 +1,49 @@
+<div class="newreceipe panel panel-default" style="max-width:700px">
+  <div class="panel-heading">
+      <h4>Add new receipe</h4>
+  </div>
+  <div class="panel-body">
+      <div class='cover-photo-holder' style="float:right">
+          <img src="{{ recipe_in_progress.cover_photo ? recipe_in_progress.cover_photo : '/assets/emptybowl.jpg' }}" height="150px" width="150px"/>
+      </div>
+      <div class="input-group">
+          <input style="width:400px;" [(ngModel)]="recipe_in_progress.title" type="text" class="form-control" placeholder="Recipe title" name="title" />
+      </div>
+      <div class="input-group">
+          <textarea style="width:400px;" [(ngModel)]="recipe_in_progress.description" rows="5" class="form-control" placeholder="Recipe title" name="description">
+              </textarea>
+      </div>
+      <div class="input-group">
+              <input style="width:350;" [(ngModel)]="recipe_in_progress.feeds_this_many" type="text" class="form-control" placeholder="feeds this many" name="title" />
+              <span class="input-group-addon">People</span>
+          </div>
+          <div class="input-group">
+                  <input style="width:350;" [(ngModel)]="recipe_in_progress.preparation_time" type="text" class="form-control" placeholder="Preparation Time" name="title" />
+                  <span class="input-group-addon">minutes</span>
+          </div>
+          <div class="form-group">
+            <label>Ingridents</label>
+            <div class="ingredient" *ngFor="let ingredient of recipe_in_progress.ingredients">
+              <input style="width:40%" type="text" [(ngModel)]="recipe_in_progress.ingredient[i].ingredient" placeholder="Ingredients"/>
+              <input style="width:40%" type="text" [(ngModel)]="recipe_in_progress.ingredient[i].measure" placeholder="Measure"/>
+              <a (click)="removeIndexAt(i)" style="cursor: pointer;font-size:80%">Remove</a>
+            </div>
+            <div class="addIngridents">
+              <input type="button" value="add" (click)="addIngredient()" style="width:50px;">
+            </div>
+          </div>
+          <div class="form-group">
+              <label>Instructions</label>
+              <div class="instructions" *ngFor="let instruction of recipe_in_progress.instructions">
+                <input style="width:40%" type="text" [(ngModel)]="recipe_in_progress.instruction[i].instruction" placeholder="instruction"/>
+                <a (click)="removeInstruction(i)" style="cursor: pointer;font-size:80%">Remove</a>
+              </div>
+              <div class="addIngridents">
+                <input type="button" value="add" (click)="addInstruction()" style="width:50px;">
+              </div>
+            </div>
+          <div class="input-group">
+              <input type="button" value="Add Recipe" (click)="addRecipeClicked()">
+          </div>
+  </div>
+</div>
